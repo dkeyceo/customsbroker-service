@@ -1,0 +1,928 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <s:import namespace="http://microsoft.com/wsdl/types/"/>
+            <s:element name="GetBrokListDS">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokListReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokListReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgAuth">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LicNum" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ViewDate" type="s:dateTime"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Adr" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Uori" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:decimal"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ResultLimitParam" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="FromOutside" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeSanctions" type="s:boolean"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="CsnWsRequestArgAuth">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="CsnWsRequestArgBase" abstract="true"/>
+            <s:element name="GetBrokListDSResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokListDSResult" type="tns:GetBrokListResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokListResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GetXMLResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="GetXMLResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="XML" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="CsnWs2ResponseBase">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="InfoMessage" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetBrokListingDs">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokListReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetBrokListingDsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokListingDsResult" type="tns:GetBrokListResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetBrokListingForDomkDs">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokListingForDomkReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokListingForDomkReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgAuth">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LicNum" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="CreatedFrom" nillable="true" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="CreatedTo" nillable="true" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ViewDate" nillable="true" type="s:dateTime"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Adr" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Uori" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Code" nillable="true" type="s:decimal"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="s:unsignedByte"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ResultLimit" nillable="true" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeSanctions" type="s:boolean"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokListingForDomkDsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokListingForDomkDsResult" type="tns:GetBrokListResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetBrokListExt">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokListReq2"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokListReq2">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="LicNum" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="LicDate" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ViewDate" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="Adr" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:decimal"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetBrokListExtResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokListExtResult" type="tns:GetDocResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetDocResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokDS">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokDsReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokDsReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgAuth">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="Guid" type="s1:guid"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Code" nillable="true" type="s:decimal"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokDSResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokDSResult" type="tns:GetXMLResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="CancellBrokLic">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:CancellBrokLicReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CancellBrokLicReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LicNum" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Cancellor" type="s:decimal"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="CancellBrokLicResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="CancellBrokLicResult" type="tns:GetDocResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="CancellBrokLicByGuid">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:CancellBrokLicByGuidReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CancellBrokLicByGuidReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="LicGuid" type="s1:guid"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Cancelled" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Cancellor" type="s:decimal"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:unsignedByte"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="CancellBrokLicByGuidResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="CancellBrokLicByGuidResult" type="tns:GetDocResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SaveBrok">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:SaveBrokReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="SaveBrokReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="DataSet" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IsAutomat" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="SEndMail" type="s:boolean"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="SaveBrokResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="SaveBrokResult" type="tns:GetDocResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="IsBrokLicExistsNew">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:IsBrokLicExistsReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="IsBrokLicExistsReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="CliCode" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="BrokLic" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ViewDate" type="s:dateTime"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="IsBrokLicExistsNewResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="IsBrokLicExistsNewResult" type="tns:IsBrokLicExistsResp"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="IsBrokLicExistsResp">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="IsExist" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Okpo" type="s:decimal"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="IsBrokLicExists">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:IsBrokLicExistsReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="IsBrokLicExistsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="IsBrokLicExistsResult" type="tns:IsBrokLicExistsResp"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCliModified">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetCliModifiedReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetCliModifiedReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="CliCode" type="s:decimal"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetCliModifiedResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCliModifiedResult" type="tns:GetCliModifiedResp"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetCliModifiedResp">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokPdf">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokPdfReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokPdfReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgAuth">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="BrokDsXml" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokPdfResponseEl">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokPdfResult" type="tns:GetBrokPdfResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokPdfResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokAppPdf">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokAppPdfReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokAppPdfReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="AppSubType" type="s:short"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="AppName" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="AppDateNum" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantName" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantAddress" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantPhone" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantEmail" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantKopfg" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantCode" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="ApplicantKatottg" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="RequestText" type="s:string"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ResponseByPost" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ResponseByEmail" type="s:boolean"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="BrokRegNum" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="StopDate" type="s:string"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokAppPdfResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokAppPdfResult" type="tns:GetBrokPdfResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetBrokAnalyticsNumbers">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokAnalyticsNumbersReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokAnalyticsNumbersReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeTotalNumber" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeIssuedNumber" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeReissuedNumber" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeSuspendedNumber" type="s:boolean"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IncludeCancelledNumber" type="s:boolean"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokAnalyticsNumbersResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokAnalyticsNumbersResult" type="tns:GetBrokAnalyticsNumbersResp"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokAnalyticsNumbersResp">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWs2ResponseBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="TotalNumber" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="IssuedNumber" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="ReissuedNumber" type="s:int"/>
+                            <s:element minOccurs="1" maxOccurs="1" name="SuspendedNumber" type="s:int"/>
+                            <s:element minOccurs="0" maxOccurs="1" name="StatusNumberList" type="tns:ArrayOfBrokAnalyticsCancellStatusNumbersItem"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfBrokAnalyticsCancellStatusNumbersItem">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="BrokAnalyticsCancellStatusNumbersItem" nillable="true" type="tns:BrokAnalyticsCancellStatusNumbersItem"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="BrokAnalyticsCancellStatusNumbersItem">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="StatusCode" nillable="true" type="s:unsignedByte"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetBrokStatusDc">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetBrokStatusDcReq"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetBrokStatusDcReq">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:CsnWsRequestArgBase">
+                        <s:sequence>
+                            <s:element minOccurs="1" maxOccurs="1" name="OnDate" nillable="true" type="s:dateTime"/>
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetBrokStatusDcResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetBrokStatusDcResult" type="tns:GetXMLResponse"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+            <s:simpleType name="guid">
+                <s:restriction base="s:string">
+                    <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+                </s:restriction>
+            </s:simpleType>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="GetBrokListDSSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokListDS"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListDSSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokListDSResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListingDsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokListingDs"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListingDsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokListingDsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListingForDomkDsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokListingForDomkDs"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListingForDomkDsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokListingForDomkDsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListExtSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokListExt"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokListExtSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokListExtResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokDSSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokDS"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokDSSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokDSResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CancellBrokLicSoapIn">
+        <wsdl:part name="parameters" element="tns:CancellBrokLic"/>
+    </wsdl:message>
+    <wsdl:message name="CancellBrokLicSoapOut">
+        <wsdl:part name="parameters" element="tns:CancellBrokLicResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CancellBrokLicByGuidSoapIn">
+        <wsdl:part name="parameters" element="tns:CancellBrokLicByGuid"/>
+    </wsdl:message>
+    <wsdl:message name="CancellBrokLicByGuidSoapOut">
+        <wsdl:part name="parameters" element="tns:CancellBrokLicByGuidResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SaveBrokSoapIn">
+        <wsdl:part name="parameters" element="tns:SaveBrok"/>
+    </wsdl:message>
+    <wsdl:message name="SaveBrokSoapOut">
+        <wsdl:part name="parameters" element="tns:SaveBrokResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IsBrokLicExistsNewSoapIn">
+        <wsdl:part name="parameters" element="tns:IsBrokLicExistsNew"/>
+    </wsdl:message>
+    <wsdl:message name="IsBrokLicExistsNewSoapOut">
+        <wsdl:part name="parameters" element="tns:IsBrokLicExistsNewResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IsBrokLicExistsSoapIn">
+        <wsdl:part name="parameters" element="tns:IsBrokLicExists"/>
+    </wsdl:message>
+    <wsdl:message name="IsBrokLicExistsSoapOut">
+        <wsdl:part name="parameters" element="tns:IsBrokLicExistsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetCliModifiedSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCliModified"/>
+    </wsdl:message>
+    <wsdl:message name="GetCliModifiedSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCliModifiedResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokPdfSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokPdf"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokPdfSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokPdfResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokAppPdfSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokAppPdf"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokAppPdfSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokAppPdfResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokAnalyticsNumbersSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokAnalyticsNumbers"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokAnalyticsNumbersSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokAnalyticsNumbersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokStatusDcSoapIn">
+        <wsdl:part name="parameters" element="tns:GetBrokStatusDc"/>
+    </wsdl:message>
+    <wsdl:message name="GetBrokStatusDcSoapOut">
+        <wsdl:part name="parameters" element="tns:GetBrokStatusDcResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="BrokSoap">
+        <wsdl:operation name="GetBrokListDS">
+            <wsdl:input message="tns:GetBrokListDSSoapIn"/>
+            <wsdl:output message="tns:GetBrokListDSSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingDs">
+            <wsdl:input message="tns:GetBrokListingDsSoapIn"/>
+            <wsdl:output message="tns:GetBrokListingDsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingForDomkDs">
+            <wsdl:input message="tns:GetBrokListingForDomkDsSoapIn"/>
+            <wsdl:output message="tns:GetBrokListingForDomkDsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListExt">
+            <wsdl:input message="tns:GetBrokListExtSoapIn"/>
+            <wsdl:output message="tns:GetBrokListExtSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokDS">
+            <wsdl:input message="tns:GetBrokDSSoapIn"/>
+            <wsdl:output message="tns:GetBrokDSSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLic">
+            <wsdl:input message="tns:CancellBrokLicSoapIn"/>
+            <wsdl:output message="tns:CancellBrokLicSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLicByGuid">
+            <wsdl:input message="tns:CancellBrokLicByGuidSoapIn"/>
+            <wsdl:output message="tns:CancellBrokLicByGuidSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SaveBrok">
+            <wsdl:input message="tns:SaveBrokSoapIn"/>
+            <wsdl:output message="tns:SaveBrokSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExistsNew">
+            <wsdl:input message="tns:IsBrokLicExistsNewSoapIn"/>
+            <wsdl:output message="tns:IsBrokLicExistsNewSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExists">
+            <wsdl:input message="tns:IsBrokLicExistsSoapIn"/>
+            <wsdl:output message="tns:IsBrokLicExistsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetCliModified">
+            <wsdl:input message="tns:GetCliModifiedSoapIn"/>
+            <wsdl:output message="tns:GetCliModifiedSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokPdf">
+            <wsdl:input message="tns:GetBrokPdfSoapIn"/>
+            <wsdl:output message="tns:GetBrokPdfSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAppPdf">
+            <wsdl:input message="tns:GetBrokAppPdfSoapIn"/>
+            <wsdl:output message="tns:GetBrokAppPdfSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAnalyticsNumbers">
+            <wsdl:input message="tns:GetBrokAnalyticsNumbersSoapIn"/>
+            <wsdl:output message="tns:GetBrokAnalyticsNumbersSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokStatusDc">
+            <wsdl:input message="tns:GetBrokStatusDcSoapIn"/>
+            <wsdl:output message="tns:GetBrokStatusDcSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BrokSoap" type="tns:BrokSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetBrokListDS">
+            <soap:operation soapAction="http://tempuri.org/GetBrokListDS" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingDs">
+            <soap:operation soapAction="http://tempuri.org/GetBrokListingDs" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingForDomkDs">
+            <soap:operation soapAction="http://tempuri.org/GetBrokListingForDomkDs" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListExt">
+            <soap:operation soapAction="http://tempuri.org/GetBrokListExt" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokDS">
+            <soap:operation soapAction="http://tempuri.org/GetBrokDS" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLic">
+            <soap:operation soapAction="http://tempuri.org/CancellBrokLic" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLicByGuid">
+            <soap:operation soapAction="http://tempuri.org/CancellBrokLicByGuid" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SaveBrok">
+            <soap:operation soapAction="http://tempuri.org/SaveBrok" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExistsNew">
+            <soap:operation soapAction="http://tempuri.org/IsBrokLicExistsNew" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExists">
+            <soap:operation soapAction="http://tempuri.org/IsBrokLicExists" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCliModified">
+            <soap:operation soapAction="http://tempuri.org/GetCliModified" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokPdf">
+            <soap:operation soapAction="http://tempuri.org/GetBrokPdf" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAppPdf">
+            <soap:operation soapAction="http://tempuri.org/GetBrokAppPdf" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAnalyticsNumbers">
+            <soap:operation soapAction="http://tempuri.org/GetBrokAnalyticsNumbers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokStatusDc">
+            <soap:operation soapAction="http://tempuri.org/GetBrokStatusDc" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BrokSoap12" type="tns:BrokSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetBrokListDS">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokListDS" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingDs">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokListingDs" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListingForDomkDs">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokListingForDomkDs" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokListExt">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokListExt" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokDS">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokDS" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLic">
+            <soap12:operation soapAction="http://tempuri.org/CancellBrokLic" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancellBrokLicByGuid">
+            <soap12:operation soapAction="http://tempuri.org/CancellBrokLicByGuid" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SaveBrok">
+            <soap12:operation soapAction="http://tempuri.org/SaveBrok" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExistsNew">
+            <soap12:operation soapAction="http://tempuri.org/IsBrokLicExistsNew" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="IsBrokLicExists">
+            <soap12:operation soapAction="http://tempuri.org/IsBrokLicExists" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCliModified">
+            <soap12:operation soapAction="http://tempuri.org/GetCliModified" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokPdf">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokPdf" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAppPdf">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokAppPdf" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokAnalyticsNumbers">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokAnalyticsNumbers" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBrokStatusDc">
+            <soap12:operation soapAction="http://tempuri.org/GetBrokStatusDc" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Brok">
+        <wsdl:port name="BrokSoap" binding="tns:BrokSoap">
+            <soap:address location="http://localhost:54314/brok.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="BrokSoap12" binding="tns:BrokSoap12">
+            <soap12:address location="http://localhost:54314/brok.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
